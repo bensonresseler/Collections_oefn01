@@ -7,19 +7,27 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Hoeveel getallen wil u inlezen? ");
-        int aantalGetallen = Integer.parseInt(scanner.nextLine());
-        int [] getallen = new int[aantalGetallen];
+        int [] getallen = new int[3];
+        int positie = 0;
+        int getal;
 
-        for (int i = 0; i < getallen.length; i++) {
-            System.out.print("Geef getal: ");
-            getallen[i] = Integer.parseInt(scanner.nextLine());
-        }
+        do {
+            System.out.print("Geef getal in (negatief om te stoppen): ");
+            getal = Integer.parseInt(scanner.nextLine());
+            if (getal >= 0) {
+                if (positie == getallen.length) {
+                    int [] temp = new int[getallen.length+1];
+                    System.arraycopy(getallen, 0, temp,0 , getallen.length);
+                    getallen = temp;
+                }
+                getallen[positie] = getal;
+                positie++;
+            }
+        } while(getal >= 0);
 
-        System.out.printf("De gesorteerde lijst:%n ");
-        Arrays.sort(getallen);
-        for (int i = 0; i < getallen.length; i++) {
-            System.out.printf("%d%n", getallen[i]);
+        Arrays.sort(getallen,0,positie);
+        for (int i = 0; i < positie; i++) {
+            System.out.println(getallen[i]);
         }
     }
 }
