@@ -16,9 +16,7 @@ public class Main {
             getal = Integer.parseInt(scanner.nextLine());
             if (getal >= 0) {
                 if (positie == getallen.length) {
-                    int [] temp = new int[getallen.length+1];
-                    System.arraycopy(getallen, 0, temp,0 , getallen.length);
-                    getallen = temp;
+                    getallen = vergrootArray(getallen);
                 }
                 getallen[positie] = getal;
                 positie++;
@@ -29,5 +27,12 @@ public class Main {
         for (int i = 0; i < positie; i++) {
             System.out.println(getallen[i]);
         }
+    }
+
+    private static int[] vergrootArray(int[] getallen) {
+        int [] temp = new int[getallen.length+1];
+        System.arraycopy(getallen, 0, temp,0 , getallen.length);
+        getallen = temp;
+        return getallen;
     }
 }
